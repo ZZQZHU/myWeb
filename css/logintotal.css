@@ -1,0 +1,14 @@
+/* 注册页面 */
+
+.codeerr {
+    color: crimson;
+    width: 60%;
+    margin: 0px auto 5px;
+    text-align: end;
+}
+
+@media screen and (max-width:768px) {
+    .codeerr {
+        width: 70%;
+    }
+}
