@@ -21,7 +21,7 @@ if (!refreshToken) {
 // 发送带有Token的请求检测登录状态
 function sendRequestWithToken() {
     $.ajax({
-        url: "http://192.168.1.137:5000/checkLogin/", // Node.js 接口的地址
+        url: path + ":5000/checkLogin/", // Node.js 接口的地址
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -44,7 +44,7 @@ function sendRequestWithToken() {
 function checkTokenExpiration() {
     if (refreshToken) {
         $.ajax({
-            url: "http://192.168.1.137:5000/refreshToken/", // Node.js 接口的地址
+            url: path + ":5000/refreshToken/", // Node.js 接口的地址
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${refreshToken}`

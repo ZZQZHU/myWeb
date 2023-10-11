@@ -27,7 +27,7 @@ function Login() {
     var username = document.getElementsByName("username")[0].value;
     var password = document.getElementsByName("password")[0].value;
     $.ajax({
-        url: "http://192.168.1.137:5000/Login/?username=" + username + "&password=" + password, // Node.js 接口的地址
+        url: path + ":5000/Login/?username=" + username + "&password=" + password, // Node.js 接口的地址
         method: 'GET',
         success: function(data) {
             console.log(11111, data)
