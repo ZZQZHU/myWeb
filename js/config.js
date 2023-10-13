@@ -6,8 +6,8 @@ function getCookie(name) {
 const refreshToken = getCookie('refreshToken');
 const token = getCookie('Token');
 if (!refreshToken) {
-    if (window.location.pathname !== "/login.html") {
-        window.location.href = "./login.html";
+    if (window.location.pathname.indexOf("/login.html") == -1) {
+        window.location.replace("./login.html");
     }
 } else {
     if (token) {

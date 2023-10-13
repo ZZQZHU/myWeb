@@ -60,6 +60,10 @@ a:hover {
     overflow: hidden
 }
 
+.regbox {
+    height: 650px;
+}
+
 .loginBox h1 {
     color: #fff;
     text-align: center;
@@ -253,6 +257,9 @@ input[type=checkbox]:checked:after {
     .loginBox {
         width: 100%;
         height: 60%;
+    }
+    .regbox {
+        height: 75%;
     }
     .loginBox .item {
         width: 70%;

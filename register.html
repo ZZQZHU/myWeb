@@ -8,21 +8,32 @@
     <meta name="force-rendering" content="webkit" />
     <title></title>
     <link rel="stylesheet" href="css/style.css" />
-    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-
+    <script src="./js/path.js"></script>
+    <script src="./js/jquery-1.8.2.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="./js/code.js"></script>
     <link rel="stylesheet" href="css/logintotal.css">
+    <script src="./js/register.js"></script>
 </head>
 
 <body>
-    <div class="loginBox">
+    <div class="loginBox regbox">
         <h1>注册</h1>
         <div class="item">
             <div class="icon"><img src="images/icon1.png" /></div>
-            <div class="txt"><input name="" type="text" placeholder="请输入您的用户名" /></div>
+            <div class="txt"><input name="username" type="text" placeholder="请输入您的用户名" /></div>
         </div>
         <div class="item">
             <div class="icon"><img src="images/icon2.png" /></div>
-            <div class="txt"><input name="" type="password" placeholder="请输入您的密码" /></div>
+            <div class="txt"><input name="password" type="password" placeholder="请输入您的密码" /></div>
+        </div>
+        <div class="item">
+            <div class="icon"><img src="images/icon2.png" /></div>
+            <div class="txt"><input name="email" type="email" placeholder="请输入您的邮箱" /></div>
+        </div>
+        <div class="item">
+            <div class="icon"><img src="images/icon2.png" /></div>
+            <div class="txt"><input name="phone" type="phone" placeholder="请输入您的手机号" /></div>
         </div>
         <div class="item">
             <div class="icon"><img src="images/icon3.png" /></div>
@@ -31,98 +42,21 @@
         </div>
         <div class="codeerr">验证码错误</div>
         <div class="item_3">
-            <input name="" type="submit" value="注册" class="btn" />
+            <input name="" type="submit" value="注册" class="btn" onclick="Register()" />
         </div>
         <div class="item_4">
             已注册<a href="login.html">我要登录</a>
         </div>
     </div>
     <script>
-        $('.codeerr').hide()
-        var show_num = []; //存放验证码
-        /*初始化*/
-        $(function() {
-            Draw(show_num); //绘制验证码
-        });
-
-        //重新生成验证码
-        function Generate() {
-            show_num = []; //清空数组
-            Draw(show_num);
-        };
-
-        // 绘制验证码
-        function Draw(show_num) {
-            var canvas_width = $('#canvas').width();
-            var canvas_height = $('#canvas').height();
-            var canvas = document.getElementById("canvas"); //获取到canvas的对象，演员
-            var context = canvas.getContext("2d"); //获取到canvas画图的环境，演员表演的舞台
-            canvas.width = canvas_width;
-            canvas.height = canvas_height;
-            var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
-            var aCode = sCode.split(",");
-            var aLength = aCode.length; //获取到数组的长度
-            for (var i = 0; i <= 3; i++) {
-                var j = Math.floor(Math.random() * aLength); //获取到随机的索引值
-                var deg = Math.random() * 30 * Math.PI / 180; //产生0~30之间的随机弧度
-                var txt = aCode[j]; //得到随机的一个内容
-                //show_num[i] = txt.toLowerCase(); //转成小写，不区分大小写
-                show_num[i] = txt; //精准匹配
-                var x = 10 + i * 20; //文字在canvas上的x坐标
-                var y = 20 + Math.random() * 8; //文字在canvas上的y坐标
-                context.font = "bold 23px 微软雅黑";
-                context.translate(x, y);
-                context.rotate(deg);
-                context.fillStyle = randomColor();
-                context.fillText(txt, 0, 0);
-                context.rotate(-deg);
-                context.translate(-x, -y);
-            }
-            for (var i = 0; i <= 5; i++) { //验证码上显示线条
-                context.strokeStyle = randomColor();
-                context.beginPath();
-                context.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
-                context.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
-                context.stroke();
-            }
-            for (var i = 0; i <= 30; i++) { //验证码上显示小点
-                context.strokeStyle = randomColor();
-                context.beginPath();
-                var x = Math.random() * canvas_width;
-                var y = Math.random() * canvas_height;
-                context.moveTo(x, y);
-                context.lineTo(x + 1, y + 1);
-                context.stroke();
-            }
-        }
-
-        function randomColor() { //得到随机的颜色值
-            var r = Math.floor(Math.random() * 256);
-            var g = Math.floor(Math.random() * 256);
-            var b = Math.floor(Math.random() * 256);
-            return "rgb(" + r + "," + g + "," + b + ")";
-        }
-    </script>
-    <script>
         $(document).ready(function() {
+            $('.codeerr').hide()
             $('#inputField').on('input', function() {
                 var inputValue = $(this).val();
                 if (inputValue.length === 4) {
                     callYourFunction(inputValue);
                 }
             });
-
-            function callYourFunction(value) {
-                const Drawnum = show_num.join('')
-                    // 在这里调用你的函数
-                console.log("调用函数，输入值为：" + value, Drawnum);
-                if (value == Drawnum) {
-                    $('.codeerr').hide()
-
-                } else {
-                    $('.codeerr').show()
-                }
-            }
         });
     </script>
 </body>

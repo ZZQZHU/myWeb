@@ -26,6 +26,16 @@ function rememberMe() {
 function Login() {
     var username = document.getElementsByName("username")[0].value;
     var password = document.getElementsByName("password")[0].value;
+    if (!username) {
+        return swal({
+            text: "请先输入姓名",
+        });
+    }
+    if (!password) {
+        return swal({
+            text: "请先输入密码",
+        });
+    }
     $.ajax({
         url: path + ":5000/Login/?username=" + username + "&password=" + password, // Node.js 接口的地址
         method: 'GET',
@@ -36,9 +46,13 @@ function Login() {
                 document.cookie = `Token=${data.token}; expires=${new Date(new Date().getTime() + 60 * 60 * 1000)}; path=/`;
                 document.cookie = `refreshToken=${data.refreshToken}; expires=${new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000)}; path=/`;
                 // document.cookie = "Token=" + data + "; path=/";
-                location.href = './index.html'
+                window.location.replace('./index.html')
             } else {
-                window.alert('用户名或密码不正确')
+                swal({
+                    title: "用户名或密码不正确!",
+                    text: "请重新填写!",
+                    icon: "error",
+                });
             }
         },
         error: function() {
