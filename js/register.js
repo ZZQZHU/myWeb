@@ -1,7 +1,6 @@
 var iscode = false
 
 function callYourFunction(value) {
-    debugger
     const Drawnum = show_num.join('')
         // 在这里调用你的函数
     console.log("调用函数，输入值为：" + value, Drawnum);
